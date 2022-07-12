@@ -8,8 +8,8 @@ __email__ = "coding4canary@gmail.com"
 __status__ = "Development"
 
 class Matrix:
-  def __init__(self): #self: reservada para poder instanciar y acceder al objeto
-    self.n_rows = 0
-    self.n_columns = 0
+  def __init__(self, rows = 0, columns = 0):
+    self.n_rows = rows
+    self.n_columns = columns
   
   pass
