@@ -13,16 +13,19 @@ class Matrix:
     self._n_columns = columns
   
   @property #Podemos acceder a este método como si fuera un atributo
-  def get_rows(self):
+  def n_rows(self):
     return self._n_rows
   
-  def get_columns(self):
+  @property
+  def n_columns(self):
     return self._n_columns
 
-  def set_rows(self, rows):
+  @n_rows.setter
+  def n_rows(self, rows):
     self._n_rows = rows
-
-  def set_columns(self, columns):
+    
+  @n_columns.setter
+  def n_columns(self, columns):
     self._n_columns = columns
 
 
