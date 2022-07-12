@@ -12,4 +12,17 @@ class Matrix:
     self.n_rows = rows
     self.n_columns = columns
   
+  def get_rows(self):
+    return self.n_rows
+  
+  def get_columns(self):
+    return self.n_columns
+
+  def set_rows(self, rows):
+    self.n_rows = rows
+
+  def set_columns(self, columns):
+    self.n_columns = columns
+
+    
   pass
