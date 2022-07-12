@@ -104,7 +104,7 @@ class Matrix:
       for i in range(self.n_rows):
         for j in range(other.n_columns):
           for z in range(other.n_columns):
-            aux.__class_set_item__(i, j, (aux.__class_get_item__(i, j) + (self.matrix[i][z] * other.matrix[z][j])))
+            aux.__class_set_item__(i, j, (aux.__class_get_item__(i, j) + (self.A[i][z] * other.A[z][j])))
       return aux
 
   def __del__(self):
