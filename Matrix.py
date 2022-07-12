@@ -44,7 +44,7 @@ class Matrix:
   def __class_del_item__(self, posi , posj):
     self.A[posi][posj] = 0
 
-  def __class_get_item__(self, posi , posj, value):
+  def __class_get_item__(self, posi , posj):
     return self.A[posi][posj]
 
   #Sobrecarga operador +
@@ -59,13 +59,12 @@ class Matrix:
     Returns:
       Matrix: devuelve un objeto de tipo Matrix resultante de la suma de matrices.
     """
-    if isinstance (other, Matrix):
-      if (self.n_columns == other.n_columns) and (self.n_rows == other.n_rows):
-        aux = Matrix((self.n_rows, self.n_columns))
-        for i in range(self.n_rows):
-          for j in range(self.n_columns):
-            aux.__class_set_item__(i,j, self.matrix[i][j] + other.matrix[i][j])
-        return aux
+    if isinstance (other, Matrix) and (self.n_columns == other.n_columns) and (self.n_rows == other.n_rows):
+      aux = Matrix((self.n_rows, self.n_columns))
+      for i in range(self.n_rows):
+        for j in range(self.n_columns):
+          aux.__class_set_item__(i,j, self.matrix[i][j] + other.matrix[i][j])
+      return aux
 
   #Sobrecarga operador -
   def __sub__(self, other: Matrix) -> Matrix:
@@ -79,13 +78,12 @@ class Matrix:
     Returns:
       Matrix: devuelve un objeto de tipo Matrix resultante de la resta de matrices.
     """
-    if isinstance (other, Matrix):
-      if (self.n_columns == other.n_columns) and (self.n_rows == other.n_rows):
-        aux = Matrix((self.n_rows, self.n_columns))
-        for i in range(self.n_rows):
-          for j in range(self.n_columns):
-            aux.__class_set_item__(i, j, self.matrix[i][j] - other.matrix[i][j])
-        return aux
+    if isinstance (other, Matrix) and (self.n_columns == other.n_columns) and (self.n_rows == other.n_rows):
+      aux = Matrix((self.n_rows, self.n_columns))
+      for i in range(self.n_rows):
+        for j in range(self.n_columns):
+          aux.__class_set_item__(i, j, self.matrix[i][j] - other.matrix[i][j])
+      return aux
 
   #Sobrecarga operdaor *
   def __mul__(self, other: Matrix) -> Matrix:
@@ -101,14 +99,13 @@ class Matrix:
     Returns:
       Matrix: devuelve un objeto de tipo Matrix resultante de la resta de matrices.
     """
-    if isinstance (other, Matrix):
-      if self.n_columns == other.n_rows:
-        aux = Matrix((self.n_rows, self.n_columns))
-        for i in range(self.n_rows):
-          for j in range(other.n_columns):
-            for z in range(other.n_columns):
-              aux.__class_set_item__(i, j, aux.__class_get_item__(i, j) + (self.matrix[i][z] * other.matrix[z][j]))
-        return aux
+    if isinstance (other, Matrix) and (self.n_columns == other.n_rows):
+      aux = Matrix((self.n_rows, self.n_columns))
+      for i in range(self.n_rows):
+        for j in range(other.n_columns):
+          for z in range(other.n_columns):
+            aux.__class_set_item__(i, j, (aux.__class_get_item__(i, j) + (self.matrix[i][z] * other.matrix[z][j])))
+      return aux
 
   def __del__(self):
     print()
