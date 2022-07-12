@@ -23,10 +23,12 @@ class Matrix:
   @n_rows.setter
   def n_rows(self, rows):
     self._n_rows = rows
-    
+
   @n_columns.setter
   def n_columns(self, columns):
     self._n_columns = columns
 
+  def __del__(self):
+    print()
 
   pass
