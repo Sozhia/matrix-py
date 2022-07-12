@@ -7,8 +7,6 @@ __maintainer__ = "Miqueas Garcia Gonzalez"
 __email__ = "coding4canary@gmail.com"
 __status__ = "Development"
 
-from array import *
-
 class Matrix:
   """
   Este modulo es responsable de almacenar, consultar, modificar, operar y 
@@ -22,7 +20,7 @@ class Matrix:
 
     self._n_rows = dims[0]
     self._n_columns = dims[1]
-    self.matrix = [[0] * self.n_columns for i in range(self.n_rows)]
+    self.A = [[0] * self.n_columns for _ in range(self.n_rows)]
   
   @property #Podemos acceder a este metodo como si fuera un atributo
   def n_rows(self):
@@ -40,8 +38,14 @@ class Matrix:
   def n_columns(self, columns):
     self._n_columns = columns
 
-  def set_value(self, posi , posj, value):
-    self.matrix[posi][posj] = value
+  def __class_set_item__(self, posi , posj, value):
+    self.A[posi][posj] = value
+
+  def __class_del_item__(self, posi , posj):
+    self.A[posi][posj] = 0
+
+  def __class_get_item__(self, posi , posj, value):
+    return self.A[posi][posj]
 
   #Sobrecarga operador +
   def __add__(self, other: Matrix) -> Matrix:
@@ -53,14 +57,13 @@ class Matrix:
       other: otra matriz (operador de la derecha).
 
     Returns:
-      bool: devuelve falso solo si las matrices no tienen las mismas dimensiones.
       Matrix: devuelve un objeto de tipo Matrix resultante de la suma de matrices.
     """
     if isinstance (other, Matrix):
       if self.n_columns != other.n_columns:
-        return False
+        return
       elif self.n_rows != other.n_rows:
-        return False
+        return
       else:
         aux = Matrix((self.n_rows, self.n_columns))
         for i in range(self.n_rows):
@@ -69,7 +72,7 @@ class Matrix:
             aux[i][j] = self.matrix[i][j] + other.matrix[i][j]
         return aux
     else:
-      return False
+      return
 
   #Sobrecarga operador -
   def __sub__(self, other: Matrix) -> Matrix:
@@ -81,14 +84,13 @@ class Matrix:
       other: otra matriz (operador de la derecha).
 
     Returns:
-      bool: devuelve falso solo si las matrices no tienen las mismas dimensiones.
       Matrix: devuelve un objeto de tipo Matrix resultante de la resta de matrices.
     """
     if isinstance (other, Matrix):
       if self.n_columns != other.n_columns:
-        return False
+        return 
       elif self.n_rows != other.n_rows:
-        return False
+        return 
       else:
         aux = Matrix((self.n_rows, self.n_columns))
         for i in range(self.n_rows):
@@ -97,7 +99,7 @@ class Matrix:
             aux[i][j] = self.matrix[i][j] - other.matrix[i][j]
         return aux
     else:
-      return False
+      return 
 
   #Sobrecarga operdaor *
   def __mul__(self, other: Matrix) -> Matrix:
@@ -111,12 +113,11 @@ class Matrix:
       other: otra matriz (operador de la derecha).
 
     Returns:
-      bool: devuelve falso solo si las matrices no cumplen requisitos para mult.
       Matrix: devuelve un objeto de tipo Matrix resultante de la resta de matrices.
     """
     if isinstance (other, Matrix):
       if self.n_columns != other.n_rows:
-        return False
+        return 
       else:
         aux = Matrix((self.n_rows, self.n_columns))
         for i in range(self.n_rows):
@@ -125,7 +126,7 @@ class Matrix:
               aux[i][j] += self.matrix[i][z] * other.matrix[z][j]
         return aux
     else:
-      return False
+      return
 
   def __del__(self):
     print()
