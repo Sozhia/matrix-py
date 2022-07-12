@@ -60,19 +60,12 @@ class Matrix:
       Matrix: devuelve un objeto de tipo Matrix resultante de la suma de matrices.
     """
     if isinstance (other, Matrix):
-      if self.n_columns != other.n_columns:
-        return
-      elif self.n_rows != other.n_rows:
-        return
-      else:
+      if (self.n_columns == other.n_columns) and (self.n_rows == other.n_rows):
         aux = Matrix((self.n_rows, self.n_columns))
         for i in range(self.n_rows):
-        # iterate through columns
           for j in range(self.n_columns):
             aux[i][j] = self.matrix[i][j] + other.matrix[i][j]
         return aux
-    else:
-      return
 
   #Sobrecarga operador -
   def __sub__(self, other: Matrix) -> Matrix:
@@ -87,19 +80,12 @@ class Matrix:
       Matrix: devuelve un objeto de tipo Matrix resultante de la resta de matrices.
     """
     if isinstance (other, Matrix):
-      if self.n_columns != other.n_columns:
-        return 
-      elif self.n_rows != other.n_rows:
-        return 
-      else:
+      if (self.n_columns == other.n_columns) and (self.n_rows == other.n_rows):
         aux = Matrix((self.n_rows, self.n_columns))
         for i in range(self.n_rows):
-        # iterate through columns
           for j in range(self.n_columns):
             aux[i][j] = self.matrix[i][j] - other.matrix[i][j]
         return aux
-    else:
-      return 
 
   #Sobrecarga operdaor *
   def __mul__(self, other: Matrix) -> Matrix:
@@ -116,17 +102,13 @@ class Matrix:
       Matrix: devuelve un objeto de tipo Matrix resultante de la resta de matrices.
     """
     if isinstance (other, Matrix):
-      if self.n_columns != other.n_rows:
-        return 
-      else:
+      if self.n_columns == other.n_rows:
         aux = Matrix((self.n_rows, self.n_columns))
         for i in range(self.n_rows):
           for j in range(other.n_columns):
             for z in range(other.n_columns):
               aux[i][j] += self.matrix[i][z] * other.matrix[z][j]
         return aux
-    else:
-      return
 
   def __del__(self):
     print()
