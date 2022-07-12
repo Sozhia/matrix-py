@@ -1,9 +1,9 @@
-__author__ = "Miqueas García González"
+__author__ = "Miqueas Garcia Gonzalez"
 __copyright__ = "-"
 __credits__ = ["-"]
 __license__ = "GPL"
 __version__ = "1.0"
-__maintainer__ = "Miqueas García González"
+__maintainer__ = "Miqueas Garcia Gonzalez"
 __email__ = "coding4canary@gmail.com"
 __status__ = "Development"
 
@@ -12,7 +12,7 @@ class Matrix:
     self._n_rows = rows
     self._n_columns = columns
   
-  @property #Podemos acceder a este método como si fuera un atributo
+  @property #Podemos acceder a este metodo como si fuera un atributo
   def n_rows(self):
     return self._n_rows
   
