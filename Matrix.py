@@ -64,7 +64,7 @@ class Matrix:
         aux = Matrix((self.n_rows, self.n_columns))
         for i in range(self.n_rows):
           for j in range(self.n_columns):
-            aux[i][j] = self.matrix[i][j] + other.matrix[i][j]
+            aux.__class_set_item__(i,j, self.matrix[i][j] + other.matrix[i][j])
         return aux
 
   #Sobrecarga operador -
@@ -84,7 +84,7 @@ class Matrix:
         aux = Matrix((self.n_rows, self.n_columns))
         for i in range(self.n_rows):
           for j in range(self.n_columns):
-            aux[i][j] = self.matrix[i][j] - other.matrix[i][j]
+            aux.__class_set_item__(i, j, self.matrix[i][j] - other.matrix[i][j])
         return aux
 
   #Sobrecarga operdaor *
@@ -107,11 +107,10 @@ class Matrix:
         for i in range(self.n_rows):
           for j in range(other.n_columns):
             for z in range(other.n_columns):
-              aux[i][j] += self.matrix[i][z] * other.matrix[z][j]
+              aux.__class_set_item__(i, j, aux.__class_get_item__(i, j) + (self.matrix[i][z] * other.matrix[z][j])
         return aux
 
   def __del__(self):
     print()
 
-  pass
 
